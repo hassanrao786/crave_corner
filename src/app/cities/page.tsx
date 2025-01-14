@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -60,32 +60,32 @@ const cities: City[] = [
 const CityCard = ({ city }: CityCardProps) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.03 }}
-      className="relative h-[400px] rounded-xl overflow-hidden shadow-lg group"
+      whileHover={{ scale: 1.05 }}
+      className="relative h-[400px] rounded-xl overflow-hidden shadow-xl group transition-transform duration-300 bg-white dark:bg-gray-800"
     >
       <Image
         src={city.image}
-        alt={city.name}
+        alt={`Image of ${city.name}`}
         fill
-        className="object-cover group-hover:scale-110 transition-transform duration-300"
+        className="object-cover group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-        <h3 className="text-2xl font-bold mb-2">{city.name}</h3>
+        <h3 className="text-3xl font-extrabold mb-2">{city.name}</h3>
         <p className="text-sm mb-3">{city.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {city.specialties.map((specialty, index) => (
             <span
               key={index}
-              className="px-2 py-1 text-xs bg-white/20 rounded-full"
+              className="px-2 py-1 text-xs bg-white/30 rounded-full"
             >
               {specialty}
             </span>
           ))}
         </div>
         <Link
-          href={`/cities/${city.name.toLowerCase()}`}
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          href={`/recipes/`}
+          className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg transition-colors duration-300 shadow-lg"
         >
           Explore Recipes
         </Link>
@@ -97,7 +97,20 @@ const CityCard = ({ city }: CityCardProps) => {
 // Main page component
 export default function CitiesPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 via-white to-gray-100 dark:from-gray-800 dark:via-gray-900 dark:to-black py-12 px-4 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-blue-600 to-purple-500 text-white py-20 px-4 text-center shadow-lg rounded-lg mb-12">
+        <h1 className="text-5xl font-extrabold mb-6">
+          Discover Pakistan's Culinary Gems
+        </h1>
+        <p className="text-lg max-w-3xl mx-auto">
+          Journey through the flavors of Pakistan, where each city tells its own
+          unique culinary story. Explore our curated collection of recipes and
+          specialties.
+        </p>
+      </div>
+
+      {/* City Cards Section */}
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -105,11 +118,12 @@ export default function CitiesPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Explore Pakistani Cities
-          </h1>
+          </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Discover the unique flavors and culinary traditions of Pakistan's most famous cities
+            Discover the unique flavors and culinary traditions of Pakistan's
+            most famous cities.
           </p>
         </motion.div>
 

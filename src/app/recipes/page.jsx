@@ -1,102 +1,46 @@
-'use client';
+import Link from 'next/link';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-const RecipeDetails = ({ params }) => {
-  const { id } = params;
-  const router = useRouter();
-
-  const recipe = {
-    id,
-    name: 'Spaghetti Bolognese',
-    description: 'A classic Italian pasta dish with rich tomato meat sauce.',
-    ingredients: ['Pasta', 'Tomato Sauce', 'Ground Beef', 'Onions', 'Garlic'],
-  };
-
-  const [customerName, setCustomerName] = useState('');
-  const [customerAddress, setCustomerAddress] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-const handleOrder = async () => {
-  if (!customerName.trim() || !customerAddress.trim()) {
-    setError('Please fill in all required fields.');
-    return;
-  }
-
-  const payload = {
-    recipeId: recipe.id, // Ensure recipeId is included
-    recipeName: recipe.name,
-    customerName,
-    customerAddress,
-  };
-
-  console.log('Payload sent to API:', payload);
-
-  setLoading(true);
-  setError(null);
-
+async function fetchRecipes() {
   try {
-    const response = await fetch('/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.message || 'Failed to place the order.');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipes`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch recipes: ${res.statusText}`);
     }
-
-    const data = await response.json();
-    console.log('Response from API:', data);
-    router.push('/delivery-status');
-  } catch (err) {
-    setError(err.message);
-  } finally {
-    setLoading(false);
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+    return [];
   }
-};
+}
 
+export default async function Recipes() {
+  const recipes = await fetchRecipes();
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{recipe.name}</h1>
-      <p className="mb-4">{recipe.description}</p>
-      <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
-      <ul className="list-disc list-inside mb-4">
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Your Name"
-          className="border p-2 rounded w-full"
-          value={customerName}
-          onChange={(e) => setCustomerName(e.target.value)}
-        />
-      </div>
-      <div className="mb-4">
-        <textarea
-          placeholder="Your Address"
-          className="border p-2 rounded w-full"
-          value={customerAddress}
-          onChange={(e) => setCustomerAddress(e.target.value)}
-        />
-      </div>
-      <button
-        className="bg-yellow-500 text-white py-2 px-4 rounded"
-        onClick={handleOrder}
-        disabled={loading}
-      >
-        {loading ? 'Placing Order...' : 'Order with COD'}
-      </button>
-      {error && <p className="mt-4 text-red-600">{error}</p>}
+    <div className="p-8 bg-gradient-to-b from-blue-100 via-white to-gray-100 dark:from-gray-800 dark:via-gray-900 dark:to-black min-h-screen">
+      <h1 className="text-4xl font-extrabold text-center text-gray-900 dark:text-white mb-6">
+        Explore Our Delicious Recipes
+      </h1>
+      {recipes.length === 0 ? (
+        <p className="text-center text-gray-700 dark:text-gray-400">No recipes found or an error occurred.</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {recipes.map((recipe) => (
+            <Link key={recipe._id} href={`/recipes/${recipe._id}`} className="group relative border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
+              <img
+                src={recipe.image}
+                alt={recipe.name}
+                className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent text-white p-4 flex flex-col justify-end">
+                <h2 className="text-xl font-semibold mb-2">{recipe.name}</h2>
+                <p className="text-lg font-medium">Price: ${recipe.price}</p>
+              </div>
+              <div className="absolute inset-0 bg-transparent group-hover:bg-black/30 transition-all duration-300 ease-in-out"></div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
-};
-
-export default RecipeDetails;
+}

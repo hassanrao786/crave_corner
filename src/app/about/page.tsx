@@ -1,4 +1,3 @@
-// src/app/about/page.tsx
 'use client'
 
 import Image from 'next/image'
@@ -6,6 +5,7 @@ import Image from 'next/image'
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+
       {/* Hero Section */}
       <div className="bg-white">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
@@ -13,9 +13,9 @@ export default function AboutPage() {
             <h1 className="text-4xl font-extrabold text-orange-500 sm:text-5xl sm:tracking-tight lg:text-6xl">
               About Us
             </h1>
-            <p className="max-w-4xl max-h-3 mt-5 mx-auto text-xl text-gray-700">
-            Introduce Crave Corner as a platform showcasing Pakistan's diverse culinary landscape.
-            Highlight the mission to bring authentic flavors from different cities to your doorstep.
+            <p className="max-w-4xl mt-5 mx-auto text-xl text-gray-700">
+              Introduce Crave Corner as a platform showcasing Pakistan's diverse culinary landscape.
+              Highlight the mission to bring authentic flavors from different cities to your doorstep.
             </p>
           </div>
         </div>
@@ -25,7 +25,7 @@ export default function AboutPage() {
       <div className="bg-white overflow-hidden">
         <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
           <div className="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
-            <div className="relative lg:row-start-1 lg:col-start-2">
+            <div className="relative lg:col-start-2">
               <div className="relative text-base mx-auto max-w-prose lg:max-w-none">
                 <figure>
                   <div className="aspect-w-12 aspect-h-7 lg:aspect-none">
@@ -46,11 +46,11 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="mt-8 text-lg text-gray-700">
-                 Whether you're miles away from home or craving the taste of your hometown, we ensure that Pakistan’s culinary treasures are just a click away.
- Food is a universal language, and we aim to promote cultural exchange by sharing the unique tastes and traditions of Pakistan’s cities and regions.
- We partner with trusted local chefs and vendors to bring you dishes made from the finest, freshest ingredients.
-By collaborating with small-scale businesses, we support local economies and highlight the talents of homegrown artisans.
-At Crave Corner, our vision is to make every meal a celebration of flavor, culture, and community.
+                  Whether you're miles away from home or craving the taste of your hometown, we ensure that Pakistan’s culinary treasures are just a click away.
+                  Food is a universal language, and we aim to promote cultural exchange by sharing the unique tastes and traditions of Pakistan’s cities and regions.
+                  We partner with trusted local chefs and vendors to bring you dishes made from the finest, freshest ingredients.
+                  By collaborating with small-scale businesses, we support local economies and highlight the talents of homegrown artisans.
+                  At Crave Corner, our vision is to make every meal a celebration of flavor, culture, and community.
                 </p>
               </div>
             </div>
@@ -88,7 +88,7 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
                   </div>
                   <div className="text-gray-500">
                     <p className="text-sm">
-                      
+                      {/* Add a description or role if needed */}
                     </p>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
                   </div>
                   <div className="text-gray-500">
                     <p className="text-sm">
-                     
+                      {/* Add a description or role if needed */}
                     </p>
                   </div>
                 </div>
@@ -136,7 +136,7 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
                   </div>
                   <div className="text-gray-500">
                     <p className="text-sm">
-              
+                      {/* Add a description or role if needed */}
                     </p>
                   </div>
                 </div>
@@ -154,10 +154,10 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
               Our Values
             </h2>
             <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-700 sm:mt-4">
-            Here are the core values that guide Crave Corner's operations
+              Here are the core values that guide Crave Corner's operations
             </p>
           </div>
-          <div className="mt-12 max-w-lg mx-auto grid gap-1 lg:grid-col-3 lg:max-w-none">
+          <div className="mt-12 max-w-lg mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none">
             {/* Value 1 */}
             <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
               <div className="flex-1 bg-white p-6 flex flex-col justify-between">
@@ -166,7 +166,7 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
                     Innovation
                   </h3>
                   <p className="mt-3 text-base text-gray-500">
-                  We are pioneers, constantly experimenting with new recipes, cuisines, and cutting-edge delivery methods to redefine the culinary experience.
+                    We are pioneers, constantly experimenting with new recipes, cuisines, and cutting-edge delivery methods to redefine the culinary experience.
                   </p>
                 </div>
               </div>
@@ -180,14 +180,13 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
                     Integrity
                   </h3>
                   <p className="mt-3 text-base text-gray-500">
-                  Transparency and ethics are at the heart of our operations, from sourcing premium ingredients to ensuring fair practices in every aspect of our business.
+                    Transparency and ethics are at the heart of our operations, from sourcing premium ingredients to ensuring fair practices in every aspect of our business.
                   </p>
                 </div>
+              </div>
+            </div>
 
-              </div>
-                </div>
-              </div>
-              {/* Value 3 */}
+            {/* Value 3 */}
             <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
               <div className="flex-1 bg-white p-6 flex flex-col justify-between mt-1">
                 <div className="flex-1">
@@ -195,16 +194,15 @@ At Crave Corner, our vision is to make every meal a celebration of flavor, cultu
                     Excellence
                   </h3>
                   <p className="mt-3 text-base text-gray-500">
-                  Every meal, every order, and every interaction is an opportunity to deliver nothing short of perfection.
+                    Every meal, every order, and every interaction is an opportunity to deliver nothing short of perfection.
                   </p>
                 </div>
               </div>
             </div>
-         
+          </div>
         </div>
       </div>
+
     </div>
-
-
   )
 }
