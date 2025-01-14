@@ -14,7 +14,7 @@ export default function AboutPage() {
               About Us
             </h1>
             <p className="max-w-4xl mt-5 mx-auto text-xl text-gray-700">
-              Introduce Crave Corner as a platform showcasing Pakistan's diverse culinary landscape.
+              Introduce Crave Corner as a platform showcasing Pakistan diverse culinary landscape.
               Highlight the mission to bring authentic flavors from different cities to your doorstep.
             </p>
           </div>

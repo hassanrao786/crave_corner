@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function AdminBlogs() {
   interface Blog {
@@ -17,7 +18,7 @@ export default function AdminBlogs() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [formData, setFormData] = useState({ title: '', content: '', author: '', picture: '' });
   const [successMessage, setSuccessMessage] = useState<string | null>(null); // State for pop-up
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
     async function fetchBlogs() {
@@ -206,7 +207,7 @@ export default function AdminBlogs() {
             <h2 className="text-xl font-semibold">{blog.title}</h2>
             <p className="text-gray-700">{blog.content ? blog.content.substring(0, 100) : 'No content available'}...</p>
             <p className="text-gray-500 text-sm">Author: {blog.author}</p>
-            {blog.picture && <img src={blog.picture} alt={blog.title} className="w-20 h-20 object-cover mt-2" />}
+            {blog.picture && <Image src={blog.picture} alt={blog.title} width={80} height={80} className="object-cover mt-2" />}
             <div className="mt-2">
               <button
                 onClick={() => handleEdit(blog)}
