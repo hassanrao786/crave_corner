@@ -20,21 +20,22 @@ export default function LoginForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (!data.success) {
         setErrorMessage(data.message || 'Invalid login credentials');
         return;
       }
-
+  
       localStorage.setItem('token', data.token);
       router.push('/');
     } catch (error) {
+      console.error('Login error:', error);
       setErrorMessage('An error occurred. Please try again.');
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMessage && <div className="text-red-500">{errorMessage}</div>}

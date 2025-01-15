@@ -12,7 +12,7 @@ export default function RegisterForm() {
     password: '',
     name: ''
   })
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string>('') // Explicitly set the type of `error` as `string`.
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,8 +32,8 @@ export default function RegisterForm() {
 
       localStorage.setItem('token', data.token)
       router.push('/')
-    } catch (error) {
-      setError('An error occurred. Please try again.')
+    } catch {
+      setError('An error occurred. Please try again.') // Removed unused `error` variable in the `catch` block.
     }
   }
 
@@ -82,7 +82,3 @@ export default function RegisterForm() {
     </form>
   )
 }
-function setError(message: any) {
-  throw new Error('Function not implemented.')
-}
-

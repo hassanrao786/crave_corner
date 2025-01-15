@@ -1,16 +1,23 @@
 // src/lib/jwt.ts
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET!
+const JWT_SECRET = process.env.JWT_SECRET!;
 
-export const signToken = (payload: any) => {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' })
-}
+// Define a type for the payload
+type TokenPayload = {
+  [key: string]: any; // Replace `any` with a more specific type if known
+};
 
-export const verifyToken = (token: string) => {
+// Updated function to sign a token
+export const signToken = (payload: TokenPayload): string => {
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' });
+};
+
+// Updated function to verify a token
+export const verifyToken = (token: string): TokenPayload | null => {
   try {
-    return jwt.verify(token, JWT_SECRET)
-  } catch (error) {
-    return null
+    return jwt.verify(token, JWT_SECRET) as TokenPayload;
+  } catch (_error) {
+    return null; // Gracefully handle verification failures
   }
-}
+};

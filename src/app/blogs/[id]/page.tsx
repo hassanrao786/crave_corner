@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 export default function BlogDetails({ params }: { params: { id: string } }) {
@@ -34,7 +35,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
       {blog.picture && (
-        <img
+        <Image
           src={blog.picture}
           alt={blog.title}
           className="w-full h-96 object-cover rounded-md mb-4"

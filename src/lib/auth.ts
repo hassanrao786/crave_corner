@@ -1,5 +1,4 @@
-// src/lib/auth.ts
-import { NextRequest } from 'next/server'
+
 import jwt from 'jsonwebtoken'
 import clientPromise from './mongodb'
 import { ObjectId } from 'mongodb'

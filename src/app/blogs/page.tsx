@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
 export default function BlogsPage() {
@@ -32,7 +33,7 @@ export default function BlogsPage() {
             className="bg-white shadow-md rounded-lg p-4 border hover:shadow-lg"
           >
             {blog.picture && (
-              <img
+              <Image
                 src={blog.picture}
                 alt={blog.title}
                 className="w-full h-40 object-cover rounded-md mb-4"

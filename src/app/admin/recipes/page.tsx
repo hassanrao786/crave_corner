@@ -194,8 +194,92 @@ export default function ManageRecipesPage() {
   }
 
   return (
-    <div className="p-8">
-      {/* ...Rest of the JSX unchanged */}
-    </div>
-  );
+    
+      <div className="p-8">
+        <h1 className="text-2xl font-bold mb-6">Manage Recipes</h1>
+    
+        {/* Form to Add New Recipe */}
+        <form onSubmit={handleAddNewRecipe} className="mb-8">
+          <div className="mb-4">
+            <label className="block mb-2 font-semibold">Name</label>
+            <input
+              type="text"
+              value={newRecipeName}
+              onChange={(e) => setNewRecipeName(e.target.value)}
+              className="border rounded p-2 w-full"
+            />
+            {formErrors.name && <p className="text-red-500">{formErrors.name}</p>}
+          </div>
+    
+          <div className="mb-4">
+            <label className="block mb-2 font-semibold">Price</label>
+            <input
+              type="number"
+              value={newRecipePrice}
+              onChange={(e) => setNewRecipePrice(Number(e.target.value))}
+              className="border rounded p-2 w-full"
+            />
+            {formErrors.price && <p className="text-red-500">{formErrors.price}</p>}
+          </div>
+    
+          <div className="mb-4">
+            <label className="block mb-2 font-semibold">Image URL</label>
+            <input
+              type="text"
+              value={newRecipeImage}
+              onChange={(e) => setNewRecipeImage(e.target.value)}
+              className="border rounded p-2 w-full"
+            />
+            {formErrors.image && <p className="text-red-500">{formErrors.image}</p>}
+          </div>
+    
+          <div className="mb-4">
+            <label className="block mb-2 font-semibold">Description</label>
+            <textarea
+              value={newRecipeDescription}
+              onChange={(e) => setNewRecipeDescription(e.target.value)}
+              className="border rounded p-2 w-full"
+            ></textarea>
+            {formErrors.description && <p className="text-red-500">{formErrors.description}</p>}
+          </div>
+    
+          <div className="mb-4">
+            <label className="block mb-2 font-semibold">Ingredients (comma-separated)</label>
+            <input
+              type="text"
+              value={newRecipeIngredients}
+              onChange={(e) => setNewRecipeIngredients(e.target.value)}
+              className="border rounded p-2 w-full"
+            />
+            {formErrors.ingredients && <p className="text-red-500">{formErrors.ingredients}</p>}
+          </div>
+    
+          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+            Add Recipe
+          </button>
+        </form>
+    
+        {/* Recipes List */}
+        <div>
+          <h2 className="text-xl font-bold mb-4">Existing Recipes</h2>
+          {recipes.map((recipe) => (
+            <div key={recipe._id} className="mb-4 border-b pb-4">
+              <h3 className="font-semibold">{recipe.name}</h3>
+              <p>Price: ${recipe.price.toFixed(2)}</p>
+              <img src={recipe.image} alt={recipe.name} className="w-32 h-32 object-cover mb-2" />
+              <p>{recipe.description}</p>
+              <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+              <button
+                onClick={() => handleDeleteRecipe(recipe._id)}
+                className="bg-red-500 text-white py-1 px-2 rounded"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+    
+  ;
 }

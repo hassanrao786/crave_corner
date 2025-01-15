@@ -1,8 +1,6 @@
-// src/lib/mongodb.ts
 import { MongoClient } from 'mongodb'
 
 if (!process.env.DATABASE_URL) {
-  
   throw new Error('Please add your MongoDB URI to .env.local')
 }
 
@@ -13,7 +11,7 @@ let client
 let clientPromise: Promise<MongoClient>
 
 if (process.env.NODE_ENV === 'development') {
-  let globalWithMongo = global as typeof globalThis & {
+  const globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>
   }
 
