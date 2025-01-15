@@ -9,7 +9,7 @@ interface Order {
     // Add other order fields as needed
 }
 
-export async function GET(req: Request): Promise<Response> {
+export async function GET(): Promise<Response> {
     try {
         const client = await clientPromise;
         const db = client.db('cravecorner');

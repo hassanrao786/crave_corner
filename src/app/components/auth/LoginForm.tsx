@@ -1,44 +1,43 @@
-// src/components/auth/LoginForm.tsx
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { LoginForm as LoginFormType } from '../../../types/auth'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { LoginForm as LoginFormType } from '../../../types/auth';
 
 export default function LoginForm() {
-  const router = useRouter()
+  const router = useRouter();
   const [formData, setFormData] = useState<LoginFormType>({
     email: '',
-    password: ''
-  })
-  const [error, setError] = useState('')
+    password: '',
+  });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
+        body: JSON.stringify(formData),
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!data.success) {
-        setError(data.message)
-        return
+        setErrorMessage(data.message || 'Invalid login credentials');
+        return;
       }
 
-      localStorage.setItem('token', data.token)
-      router.push('/')
+      localStorage.setItem('token', data.token);
+      router.push('/');
     } catch (error) {
-      setError('An error occurred. Please try again.')
+      setErrorMessage('An error occurred. Please try again.');
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {error && <div className="text-red-500">{error}</div>}
+      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
       <div>
         <label htmlFor="email">Email</label>
         <input
@@ -68,5 +67,5 @@ export default function LoginForm() {
         Login
       </button>
     </form>
-  )
+  );
 }

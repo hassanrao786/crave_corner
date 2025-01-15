@@ -1,6 +1,6 @@
 import clientPromise from '@/lib/mongodb';
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db(); // Use the default database from your connection URI or specify one

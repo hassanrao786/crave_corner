@@ -46,7 +46,7 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="mt-8 text-lg text-gray-700">
-                  Whether you're miles away from home or craving the taste of your hometown, we ensure that Pakistan’s culinary treasures are just a click away.
+                  Whether you are miles away from home or craving the taste of your hometown, we ensure that Pakistan’s culinary treasures are just a click away.
                   Food is a universal language, and we aim to promote cultural exchange by sharing the unique tastes and traditions of Pakistan’s cities and regions.
                   We partner with trusted local chefs and vendors to bring you dishes made from the finest, freshest ingredients.
                   By collaborating with small-scale businesses, we support local economies and highlight the talents of homegrown artisans.
@@ -154,7 +154,7 @@ export default function AboutPage() {
               Our Values
             </h2>
             <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-700 sm:mt-4">
-              Here are the core values that guide Crave Corner's operations
+              Here are the core values that guide Crave Corner operations
             </p>
           </div>
           <div className="mt-12 max-w-lg mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none">

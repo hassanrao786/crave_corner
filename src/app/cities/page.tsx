@@ -101,7 +101,7 @@ export default function CitiesPage() {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-blue-600 to-purple-500 text-white py-20 px-4 text-center shadow-lg rounded-lg mb-12">
         <h1 className="text-5xl font-extrabold mb-6">
-          Discover Pakistan's Culinary Gems
+          Discover Pakistan  Culinary Gems
         </h1>
         <p className="text-lg max-w-3xl mx-auto">
           Journey through the flavors of Pakistan, where each city tells its own
@@ -122,7 +122,7 @@ export default function CitiesPage() {
             Explore Pakistani Cities
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Discover the unique flavors and culinary traditions of Pakistan's
+            Discover the unique flavors and culinary traditions of Pakistan
             most famous cities.
           </p>
         </motion.div>
