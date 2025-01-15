@@ -34,7 +34,7 @@ export default function ContactPage() {
       } else {
         throw new Error('Failed to send message')
       }
-    } catch (error) {
+    } catch {
       setStatus({
         message: 'Failed to send message. Please try again.',
         type: 'error',
