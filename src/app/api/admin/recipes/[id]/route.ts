@@ -1,9 +1,15 @@
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }): Promise<Response> {
+export async function DELETE(req: Request): Promise<Response> {
   try {
-    const { id } = params; // Extract the ID from the URL params
+    const url = new URL(req.url);
+    const id = url.pathname.split('/').pop(); // Extract ID from the URL path
+
+    if (!id || !ObjectId.isValid(id)) {
+      return new Response(JSON.stringify({ message: 'Invalid ID parameter.' }), { status: 400 });
+    }
+
     const client = await clientPromise;
     const db = client.db('crave_corner');
 
