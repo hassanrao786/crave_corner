@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface Recipe {
   _id: string;
@@ -266,7 +267,7 @@ export default function ManageRecipesPage() {
             <div key={recipe._id} className="mb-4 border-b pb-4">
               <h3 className="font-semibold">{recipe.name}</h3>
               <p>Price: ${recipe.price.toFixed(2)}</p>
-              <img src={recipe.image} alt={recipe.name} className="w-32 h-32 object-cover mb-2" />
+              <Image src={recipe.image} alt={recipe.name} className="w-32 h-32 object-cover mb-2" />
               <p>{recipe.description}</p>
               <p>Ingredients: {recipe.ingredients.join(', ')}</p>
               <button
