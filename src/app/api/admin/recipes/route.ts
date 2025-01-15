@@ -1,8 +1,41 @@
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
+// Recipe Type Definition
+interface Recipe {
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+  ingredients: string[];
+}
+
+// Main Handler
+export async function POST(req: Request): Promise<Response> {
+  const url = new URL(req.url);
+  const method = req.method;
+
+  switch (method) {
+    case 'GET':
+      return handleGetAllRecipes();
+
+    case 'POST':
+      return handleAddRecipe(req);
+
+    case 'DELETE':
+      const id = url.searchParams.get('id'); // Extract ID from query params
+      if (!id) {
+        return new Response(JSON.stringify({ message: 'ID is required for deletion.' }), { status: 400 });
+      }
+      return handleDeleteRecipe(id);
+
+    default:
+      return new Response(JSON.stringify({ message: 'Method not allowed.' }), { status: 405 });
+  }
+}
+
 // Handle GET request (Fetch all Recipes)
-export async function GET(): Promise<Response> {
+async function handleGetAllRecipes(): Promise<Response> {
   try {
     const client = await clientPromise;
     const db = client.db('crave_corner');
@@ -16,15 +49,7 @@ export async function GET(): Promise<Response> {
 }
 
 // Handle POST request (Add a new Recipe)
-interface Recipe {
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  ingredients: string[];
-}
-
-export async function POST(req: Request): Promise<Response> {
+async function handleAddRecipe(req: Request): Promise<Response> {
   try {
     const newRecipe: Recipe = await req.json();
 
@@ -54,10 +79,8 @@ export async function POST(req: Request): Promise<Response> {
 }
 
 // Handle DELETE request (Delete a Recipe)
-export async function DELETE(req: Request, { params }: { params: { id: string } }): Promise<Response> {
+async function handleDeleteRecipe(id: string): Promise<Response> {
   try {
-    const { id } = params;
-
     if (!ObjectId.isValid(id)) {
       return new Response(JSON.stringify({ message: 'Invalid ID format.' }), { status: 400 });
     }
